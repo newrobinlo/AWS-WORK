@@ -4,16 +4,34 @@ FROM python:3.9-slim
 # 設定工作目錄
 WORKDIR /app
 
-# 安裝必要的依賴
-COPY requirements.txt /app/
+# 複製當前目錄的內容到容器內
+COPY . /app
+
+# 安裝依賴
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 複製你的應用程式
-COPY . /app/
-
-# 告訴容器在執行時會用這個端口
+# 開放 FastAPI 需要的端口（通常是 8000）
 EXPOSE 8000
 
-# 啟動 FastAPI 應用
+# 設定容器啟動時執行的命令
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
